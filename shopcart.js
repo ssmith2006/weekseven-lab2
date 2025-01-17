@@ -34,3 +34,5 @@ let totalInvoice = products.reduce((acc, curr) => {
 
 console.log(totalInvoice);
 let total = document.getElementById("totalInvoice");
+total.textContent = //sets the plain text of an element...only text"//
+"Total Invoice: $" + totalInvoice; 
