@@ -13,10 +13,18 @@ let products = [
   { id: 6, name: "Ring Video Doorbell", price: 99.99, quantity: 1 },
 ];
 
-products.forEach((product) => { //array method to loop over the array// We are looping over 
+let showcartButton = document.getElementById("showCart");
+showcartButton.addEventListener("click", () => {
+  render(tableBody);
+});
 
-  //template literal: this makes working with strings easier. allows the inclusion of expressions inside ${} (template literal substitution: will be replaced with what's inside) // the string inside the ` is HTML markup that will appear on the page.
-  let row = ` 
+function render(table) {
+  table.innerHTML = "";
+  products.forEach((product) => {
+    //array method to loop over the array// We are looping over
+
+    //template literal: this makes working with strings easier. allows the inclusion of expressions inside ${} (template literal substitution: will be replaced with what's inside) // the string inside the ` is HTML markup that will appear on the page.
+    let row = ` 
       <tr>        
           <td>${product.id}</td>
           <td>${product.name}</td>
@@ -24,15 +32,17 @@ products.forEach((product) => { //array method to loop over the array// We are l
           <td>${product.quantity}</td>
       </tr>
 `;
-tableBody.innerHTML += row; // += an assignment operator that adds the right-hand side to the left-hand then result back to the left-hand side
-});
+    tableBody.innerHTML += row; // += an assignment operator that adds the right-hand side to the left-hand then result back to the left-hand side
+  });
 
-//function is a blockcode. can group things together. has inputs called parameters. declared using the function keyword. goes inside curly brackets. The code below is a function expression.
-let totalInvoice = products.reduce((acc, curr) => {
-  return acc + curr.price * curr.quantity; // had to calculate the total of each price and then multiply by the quantity (this is the most simplest formula I saw)
-}, 0);
+  //function is a blockcode. can group things together. has inputs called parameters. declared using the function keyword. goes inside curly brackets. The code below is a function expression.
+  let totalInvoice = products.reduce((acc, curr) => {
+    return acc + curr.price * curr.quantity; // had to calculate the total of each price and then multiply by the quantity (this is the most simplest formula I saw).
+  }, 0); //Where you want the function to start
 
-console.log(totalInvoice);
-let total = document.getElementById("totalInvoice");
-total.textContent = //sets the plain text of an element...only text"//
-"Total Invoice: $" + totalInvoice; 
+  console.log(totalInvoice);
+  let total = document.getElementById("totalInvoice");
+  total.textContent = "Total Invoice: $" + totalInvoice.toFixed(2); //sets the plain text of an element...only text"//
+}
+
+
